@@ -59,9 +59,7 @@
               <li><a href="#about">About</a></li>
               <li><a href="#features">Features</a></li>
               {% if user.is_authenticated %}
-              <li>
-                <a href="#services" >Hello</a>
-              </li>
+
             {% endif %}
               <li><a href="#contact">Contact</a></li>
 
@@ -69,15 +67,121 @@
           
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+
+      {% if user.is_authenticated %}
+      <a  href="{% url 'logout' %}">
+        <button class="btn-getstarted">Logout</button>
+      </a>      
+      {% else %}
+
+      <a  href="{% url 'login' %}">
+        <button class="btn-getstarted">Login</button>
+      </a>
       
-      <select name="ajay" class="btn-getstarted" onchange="window.location.href=this.value">
-        <option value="" disabled selected>Get Started</option>
-        <option value="{% url 'login' %}">Login</option>
-        <option value="{% url 'signup' %}">Signup</option>
-      </select>
+      <a  href="{% url 'signup' %}">
+        <button class="btn-getstarted">Signup</button>
+      </a>
+      {% endif %}
   </header>
 
   <main class="main">
+    {% if user.is_authenticated %}
+    <section id="services" class="services section light-background">
+ 
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2 style="margin-top: 70px;">Heyy!!</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+ 
+      <div class="container">
+ 
+        <div class="row g-5">
+ 
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item item-cyan position-relative">
+              <i class="bi bi-activity icon"></i>
+              <div>
+                <h3>Real-Time Communication.</h3>
+                <p>Instant translation for real-time communication, making conversations between sign language users and non-sign language users smooth and effortless.
+                </p>
+                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+ 
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <!-- Wrap the entire service item in an anchor tag to make the whole block clickable -->
+            <a href="{% url 'login' %}" class="service-item item-orange position-relative">
+              <i class="bi bi-broadcast icon"></i>
+              <div>
+                <h3>Speech-to-Text Conversion</h3>
+                <p>Convert spoken English into written text to facilitate communication for users with hearing impairments.</p>
+                <span class="read-more">tryyy </span>
+              </div>
+            </a>
+          </div><!-- End Service Item -->
+          
+ 
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <!-- Wrap the entire service item in an anchor tag to make the whole block clickable -->
+            <a href="{% url 'login' %}" class="service-item item-teal position-relative">
+              <i class="bi bi-easel icon"></i>
+              <div>
+                <h3>Text-to-Speech Service</h3>
+                <p>For users with visual impairments, our platform can read out translated sign language or text aloud for better accessibility.</p>
+                <span class="read-more">Tryy </span>
+              </div>
+            </a>
+          </div><!-- End Service Item -->
+          
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item item-red position-relative">
+              <i class="bi bi-bounding-box-circles icon"></i>
+              <div>
+                <h3>Custom Sign Language Lessons
+ 
+                </h3>
+                <p>Learn the basics of sign language through interactive lessons, tailored to different levels of expertise.
+                </p>
+                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+ 
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item item-indigo position-relative">
+              <i class="bi bi-calendar4-week icon"></i>
+              <div>
+                <h3>Accessibility Tools
+ 
+                  .</h3>
+                <p>Provide a suite of tools that make your content more accessible, such as font adjustments, contrast settings, and more.
+                  .</p>
+                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+ 
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item item-pink position-relative">
+              <i class="bi bi-chat-square-text icon"></i>
+              <div>
+                <h3>Integration with Other Platforms</h3>
+                <p>Seamlessly integrate our translation services into other platforms (e.g., websites, apps, or customer service portals) for enhanced accessibility.
+                </p>
+                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+ 
+        </div>
+ 
+      </div>
+ 
+    </section><!-- /Services Section -->
+    {% else %}
+ 
 
     <!-- Hero Section -->
 
@@ -144,6 +248,9 @@
       </div>
 
     </section><!-- /Featured Services Section -->
+    {% endif %}
+       <!-- Services Section -->
+
 
     <!-- About Section -->
     <section id="about" class="about section">
@@ -310,100 +417,7 @@
 
     </section><!-- /Features Details Section -->
 
-    <!-- Services Section -->
-   {% if user.is_authenticated %}
-    <section id="services" class="services section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row g-5">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item item-cyan position-relative">
-              <i class="bi bi-activity icon"></i>
-              <div>
-                <h3>Real-Time Communication.</h3>
-                <p>Instant translation for real-time communication, making conversations between sign language users and non-sign language users smooth and effortless.
-                </p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item item-orange position-relative">
-              <i class="bi bi-broadcast icon"></i>
-              <div>
-                <h3>Speech-to-Text Conversion</h3>
-                <p>Convert spoken English into written text to facilitate communication for users with hearing impairments.</p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item item-teal position-relative">
-              <i class="bi bi-easel icon"></i>
-              <div>
-                <h3>Text-to-Speech Service</h3>
-                <p>For users with visual impairments, our platform can read out translated sign language or text aloud for better accessibility.</p>                  <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item item-red position-relative">
-              <i class="bi bi-bounding-box-circles icon"></i>
-              <div>
-                <h3>Custom Sign Language Lessons
-
-                </h3>
-                <p>Learn the basics of sign language through interactive lessons, tailored to different levels of expertise.
-                </p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-item item-indigo position-relative">
-              <i class="bi bi-calendar4-week icon"></i>
-              <div>
-                <h3>Accessibility Tools
-
-                  .</h3>
-                <p>Provide a suite of tools that make your content more accessible, such as font adjustments, contrast settings, and more.
-                  .</p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-item item-pink position-relative">
-              <i class="bi bi-chat-square-text icon"></i>
-              <div>
-                <h3>Integration with Other Platforms</h3>
-                <p>Seamlessly integrate our translation services into other platforms (e.g., websites, apps, or customer service portals) for enhanced accessibility.
-                </p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Services Section -->
-    {% endif %}
-   
+    
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
