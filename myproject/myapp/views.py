@@ -156,3 +156,93 @@ def logout(request):
 #                 return JsonResponse({"error": str(e)}, status=500)
 
 #     return render(request, 'speech_to_text.html')
+
+
+def videocheck(request):
+    return render(request, 'camera.html')
+
+
+
+def tryyy(request):
+    return render(request, 'tryy.html')
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+# List of phrases that should correspond to GIFs
+isl_gif = ['any questions', 'are you angry', 'are you busy', 'are you hungry', 'are you sick', 'be careful',
+           'can we meet tomorrow', 'did you book tickets', 'did you finish homework', 'do you go to office', 'do you have money',
+           'do you want something to drink', 'do you want tea or coffee', 'do you watch TV', 'dont worry', 'flower is beautiful',
+           'good afternoon', 'good evening', 'good morning', 'good night', 'good question', 'had your lunch', 'happy journey',
+           'hello what is your name', 'how many people are there in your family', 'i am a clerk', 'i am bored doing nothing', 
+           'i am fine', 'i am sorry', 'i am thinking', 'i am tired', 'i dont understand anything', 'i go to a theatre', 'i love to shop']
+
+# List of alphabet letters for sign language images
+arr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r', 's','t','u','v','w','x','y','z']
+
+@csrf_exempt
+def speech_to_text(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            recognized_text = data.get('text', '').lower()
+            print(f"Received Text: {recognized_text}")
+
+            # Check if recognized text matches a GIF
+            if recognized_text in isl_gif:
+                gif_url = f'/static/ISL_Gifs/{recognized_text}.gif'
+                return JsonResponse({'gif_url': gif_url})
+
+            # Check if recognized text matches a letter and return corresponding image
+            image_urls = []
+            for c in recognized_text:
+                if c in arr:
+                    image_path = f'/static/letters/{c}.jpg'
+                    image_urls.append(image_path)
+
+            if image_urls:
+                return JsonResponse({'image_urls': image_urls})
+
+            return JsonResponse({'message': 'Text not recognized'})
+        
+        except Exception as e:
+            return JsonResponse({'message': f"Error processing text: {str(e)}"})
+
+    return JsonResponse({'message': 'Invalid request method'})
+
+from django.shortcuts import render
+from django.http import JsonResponse
+import json
+
+def text_to_sign(request):
+    if request.method == 'POST':
+        input_text = request.POST.get('inputText', '').lower()
+        print(f"Received Text: {input_text}")
+
+        gif_url = None
+        image_urls = []
+        message = None
+
+        # Check if recognized text matches a GIF
+        if input_text in isl_gif:
+            print("pharse mila ")
+            gif_url = f'/static/ISL_Gifs/{input_text}.gif'
+
+        # Check if recognized text matches a letter and return corresponding image
+        for c in input_text:
+            if c in arr:
+                print("image mil gya")
+                image_path = f'/static/letters/{c}.jpg'
+                image_urls.append(image_path)
+
+        if not gif_url and not image_urls:
+            message = "Text not recognized or no matching images found."
+
+        return render(request, 'texttosign.html', {
+            'gif_url': gif_url,
+            'image_urls': image_urls,
+            'message': message
+        })
+
+    return render(request, 'texttosign.html')
