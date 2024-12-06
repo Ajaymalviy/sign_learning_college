@@ -99,23 +99,23 @@
         <div class="row g-5">
  
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item item-cyan position-relative">
+            <a href="{% url 'videocheck' %}" class="service-item item-cyan position-relative stretched-link">
               <i class="bi bi-activity icon"></i>
-              <div>
-                <h3>Real-Time Communication.</h3>
-                <p>Instant translation for real-time communication, making conversations between sign language users and non-sign language users smooth and effortless.
-                </p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
+               <div>
+                    <h3>Real-Time Communication.</h3>
+                    <p>Instant translation for real-time communication, making conversations between sign language users and non-sign language users smooth and effortless.</p>
+                    <span class="read-more">tryyy </span>
+                  </div>
+            </a>
+         </div><!-- End Service Item -->
+        
  
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <!-- Wrap the entire service item in an anchor tag to make the whole block clickable -->
-            <a href="{% url 'login' %}" class="service-item item-orange position-relative">
+            <a href="{% url 'tryyy' %}" class="service-item item-orange position-relative">
               <i class="bi bi-broadcast icon"></i>
               <div>
-                <h3>Speech-to-Text Conversion</h3>
+                <h3>Speech-to-Sign Conversion</h3>
                 <p>Convert spoken English into written text to facilitate communication for users with hearing impairments.</p>
                 <span class="read-more">tryyy </span>
               </div>
@@ -125,10 +125,10 @@
  
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <!-- Wrap the entire service item in an anchor tag to make the whole block clickable -->
-            <a href="{% url 'login' %}" class="service-item item-teal position-relative">
+            <a href="{% url 'text_to_sign' %}" class="service-item item-teal position-relative">
               <i class="bi bi-easel icon"></i>
               <div>
-                <h3>Text-to-Speech Service</h3>
+                <h3>Text-to-Sign</h3>
                 <p>For users with visual impairments, our platform can read out translated sign language or text aloud for better accessibility.</p>
                 <span class="read-more">Tryy </span>
               </div>
